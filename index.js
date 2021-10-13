@@ -1,4 +1,5 @@
 const Discord = require('discord.js')
+const keepAlive  = require('./server')
 
 const client = new Discord.Client({
   allowedMentions: {
@@ -46,4 +47,5 @@ client.on("messageCreate", async message => {
   
 })
 
+keepAlive()
 client.login(process.env['TOKEN'])
