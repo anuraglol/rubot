@@ -2,7 +2,6 @@ const Discord = require('discord.js')
 const keepAlive = require('./server')
 const axios = require('axios').default;
 
-
 const client = new Discord.Client({
   allowedMentions: {
     parse: ['users', 'roles'],
@@ -24,19 +23,9 @@ client.on('ready', () => {
 
 client.on("messageCreate", async message => {
   if (message.content === '$help') {
-    let data = {
-      $ping: 'replies with pong!',
-      $gm: 'replies with gm!',
-      $hey: 'says hey in a different way',
-      $wassup: 'says wassup by pinging the user',
-      $user: 'shows the name of the user',
-      $pic: 'replies with the avatar of the user',
-      $cat: 'replies with a random cat pic!!'
-    }
+  
+  message.channel.send("commands: \n `$help`: *help me out!* \n `$ping`: *replies with pong!* \n `$gm`: *replies with gm!* \n `$hey`: *replies with hey, but in a funny way* \n `$wassup`: *pings user* \n `$user`: *replies with the user(s) name* \n `$pic`: *replies with the avatar of the user* \n `$cat`: *replies with a random cat picture* \n `$dog`: *replies with a random doggo pic* ")
 
-    message.channel.send('commands: ')
-    console.log(data)
-    // in development
   }
 
   else if (message.content === '$ping') {
@@ -71,11 +60,11 @@ client.on("messageCreate", async message => {
       })
   }
 
-  else if(message.content === '$dog'){
+  else if (message.content === '$dog') {
     axios.get('https://random.dog/woof.json')
-    .then(function(res){
-      message.channel.send(res.data.url)
-    })
+      .then(function(res) {
+        message.channel.send(res.data.url)
+      })
   }
 })
 
